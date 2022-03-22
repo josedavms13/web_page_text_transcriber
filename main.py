@@ -1,6 +1,18 @@
+from docs.sheet import Sheet
+from web.web_page import WebPage
+from html_doc import parse_html_content
 
+print("\t====Trancriptor de paginas a texto==== Solo funciona con la de omnilife por ahora")
 
-input("Trancriptor de paginas a texto")
+page_url = "https://vendiendo.co/blogs/omniplus-supreme-omnilife-beneficios/"
 
-page_url = input("Pega la url de la pagina")
+sheet = Sheet()
 
+web_page = WebPage(page_url)
+main_titles = web_page.get_main_titles()
+sheet.type_title(main_titles.text)
+print(main_titles.text)
+items = web_page.get_content()
+parse_html_content(sheet, items)
+
+sheet.save(input("Pon el nombre del archivo"))
