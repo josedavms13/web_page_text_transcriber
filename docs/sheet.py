@@ -1,6 +1,5 @@
 from openpyxl import Workbook
-from selenium.webdriver.remote.webelement import WebElement
-from typing import List
+from openpyxl.styles import Border, Side
 
 
 class Sheet:
@@ -20,6 +19,12 @@ class Sheet:
 
     def get_cell(self, type_of: int) -> str:
         return f"{self.get_column_by_importance(type_of)}{self._row}"
+
+    def set_cell_border(self, cell: str):
+        double = Side(border_style="double")
+        border = Border(top=double, left=double, right=double, bottom=double)
+        cell = self._sheet[cell]
+        cell.border= border
 
     def type_in_cell(self, content: str, cell="", increase_count=True):
         current_cell = cell if len(cell) > 0 else f"C{self._row}"
@@ -45,6 +50,13 @@ class Sheet:
     def type_paragraph(self, content: str):
         self._row += 1
         self.type_in_cell("PARRAFO", self.get_cell(4), False)
+        self.type_in_cell(content, self.get_cell(6))
+        self._row += 1
+
+    def type_as_list(self, content: str):
+        self._row += 2
+        self.type_in_cell("LISTA", self.get_cell(5), False)
+        self.set_cell_border(self.get_cell(6))
         self.type_in_cell(content, self.get_cell(6))
         self._row += 1
 

@@ -12,8 +12,7 @@ class WebPage(BasePage):
     def __init__(self, url: str):
         super(WebPage, self).__init__(url)
         print("Opening web page")
-        self.driver.maximize_window()
-        input("Acepta las cookies y preciona enter")
+        input("Acepta las cookies y preciona enter ")
         self.restore_window_size()
 
     def get_main_titles(self) -> WebElement:
@@ -22,6 +21,6 @@ class WebPage(BasePage):
     def get_content(self) -> List[WebElement]:
         WebDriverWait(self.driver, 10)\
             .until(EC.presence_of_element_located((By.CSS_SELECTOR, "div h2 ~ p, div h2")))
-        return self.driver.find_elements(By.CSS_SELECTOR, "div h2 ~ p, div h2")
+        return self.driver.find_elements(By.CSS_SELECTOR, "#main div h2 ~ p, #main div h2, #main div ul li:not(nav ul li)")
 
 
