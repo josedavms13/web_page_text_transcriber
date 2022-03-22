@@ -14,6 +14,32 @@ subprocess.run(f"cd {current}", shell=True)
 subprocess.run(f"cd {env_script}", shell=True)
 # subprocess.run("active", shell=True)
 # subprocess.run(f"cd {current}", shell=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # subprocess.run("active", shell=True)
 
 
